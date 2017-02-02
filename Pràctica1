@@ -39,7 +39,6 @@ nombres <- c("Sergio", "Carlos", "Paula")
     #####CONTAR # DE OBJ CON ALGUNA CARACTERISTICA
     table(SDEMT116$SEX)
     table(SDEMT116$ENT)#Tabla para la variable entidad en base de datos SDEMT116
-    table(MTI2015$ENT)#Tabla para la variable entidad en base de datos MTI2015
     #####para expandir la encuesta   aaa y "#" para comentarios ;)
     
   install.packages("questionr")  ###bajamos de internet la libreria
