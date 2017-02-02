@@ -1,0 +1,47 @@
+temporal <- tempfile()
+download.file("http://www.beta.inegi.org.mx/contenidos/proyectos/enchogares/regulares/enoe/microdatos/enoe_15ymas/2016/2016trim1_dbf.zip",temporal)
+files = unzip(temporal, list=TRUE)$Name
+unzip(temporal, files=files[grepl("dbf",files)])
+install.packages("foreign")
+require(foreign)
+SDEMT116 <- data.frame(read.dbf("sdemt116.dbf"))
+
+#############################################
+Dos examenes 50 %
+Cada examen 25 %
+Examen 1
+1) conceptos basicos de series de tiempo
+2)scrip de un ejercicio de series de tiempo
+examen 2
+1)modelos de series de tiempo
+2) modelar series en R (SCRIPT)
+Trabajo final 15%
+Prácticas 15%
+Lecturas (noticias y más) 10%
+participacion y asistencia 10%
+
+####################################################################################
+
+temporal <- tempfile()
+download.file("http://www.beta.inegi.org.mx/contenidos/proyectos/enchogares/modulos/mti/2015/microdatos/mti2015_bases_conapo_dbf.zip",temporal)
+files = unzip(temporal, list=TRUE)$Name
+unzip(temporal, files=files[grepl("dbf",files)])
+install.packages("foreign")
+require(foreign)
+MTI2015 <- data.frame(read.dbf("mti2015_sdem_0a4_y_18ymas.DBF"))
+
+##################################################  REPASO   ################################################################
+nombres <- c("Sergio", "Carlos", "Paula")
+    edad <- c(23, 43, 51)
+    base1 <- data.frame (nombres, edad)
+
+    3+4
+    #####CONTAR # DE OBJ CON ALGUNA CARACTERISTICA
+    table(SDEMT116$SEX)
+    table(SDEMT116$ENT)#Tabla para la variable entidad en base de datos SDEMT116
+    table(MTI2015$ENT)#Tabla para la variable entidad en base de datos MTI2015
+    #####para expandir la encuesta   aaa y "#" para comentarios ;)
+    
+  install.packages("questionr")  ###bajamos de internet la libreria
+  require(questionr) ### manDamos llamar la libreria a mi secion de R
+  wtd.table (SDEMT116$SEX, weights = SDEMT116$FAC)
