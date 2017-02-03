@@ -1,0 +1,29 @@
+temporal <- tempfile()
+download.file("http://www.beta.inegi.org.mx/contenidos/proyectos/enchogares/regulares/enoe/microdatos/enoe_15ymas/2016/2016trim1_dbf.zip",temporal)
+files = unzip(temporal, list=TRUE)$Name
+unzip(temporal, files=files[grepl("dbf",files)])
+install.packages("foreign")
+require(foreign)
+SDEMT116 <- data.frame(read.dbf("sdemt116.dbf"))
+View(SDEMT116)
+table(SDEMT116$R_DEF) #frecuencia de la base de datos que cumple con la variable
+table(SDEMT116$CLASE2)
+
+install.packages("questionr")
+library(questionr)
+require(questionr)
+wtd.table (SDEMT116$CLASE2, weights=SDEMT116$FAC) #funcion  para expandir la muestra a toda la nación y te da los de la clase 2 en todo México
+2149567 #desempleados en mexico en 2016 segun la enoe
+
+#filtrar casos por ejemplo solo aguascalientes
+
+AGSandBaja <- subset(SDEMT116,SDEMT116$ENT =="01" | SDEMT116$ENT =="02")
+
+data("AirPassengers")
+class(AirPassengers)
+start(AirPassengers); end(AirPassengers) #primer dato cuano inicia y cuando acaba
+frequency (AirPassengers) #en este caso son mensuales
+summary(AirPassengers) #resumen de estadística descriptiva
+
+View(AirPassengers)
+plot(AirPassengers)
