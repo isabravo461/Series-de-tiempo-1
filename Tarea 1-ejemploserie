@@ -1,0 +1,8 @@
+#Datos mensuales del consumo de gasolina en España 
+# entre enero de 1966 y agosto de 1977
+
+gas<-ts(scan('http://www.uam.es/joser.berrendero/datos/gas6677.dat'),start=c(1966,1),frequency=12)
+X11()
+plot(gas)
+
+
