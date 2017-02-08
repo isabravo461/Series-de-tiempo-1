@@ -1,0 +1,40 @@
+## Ejemplo para proponer la poblacion en México
+##  que el valor mínimo seran de 100 y el max de 120, 15 datos que inicie en 200
+pob<-sample(100:120,15, replace =F)
+pob
+
+## la convertimos en serie de tiempo
+pobts<-ts(pob,frequency=1,start =2000)
+pobts
+end(pobts)
+start(pobts)
+
+plot(pobts) 
+plot(aggregate(pobts))
+
+
+###### bajar del inegi una base de datos
+### importar csv, es compatible con xls
+infor<-ts(read.csv(("C:\\Users\\SALA-D18\\Downloads\\infor.csv"),header =T) , frequency =4, start=2005)
+infor
+ind<-ts(read.csv(("C:\\Users\\SALA-D18\\Downloads\\indicadores2.csv"),header =T) , frequency =4, start=2005)
+indi3<-read.csv(("C:\\Users\\SALA-D18\\Downloads\\indicadores2.csv"))
+indi3st<-ts(indi3,frequency=4,start=2005)
+decost<-ts(indi3[,1],start=2005,freq=4)
+plot(indi3st)
+
+x11()
+plot(decost)
+
+ocupparcial<-ts(indi3[,2],start=2005,freq=4)
+x11(ocupparcial)
+plot(ocupparcial)
+
+trabajoasa<-ts(indi3[,3],start=2005,freq=4)
+x11(trabajoasa)
+plot(trabajoasa)
+
+concri<-ts(indi3[,4],start=2005,freq=4)
+x11(concri)
+plot(concri)
+concri
