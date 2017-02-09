@@ -1,0 +1,6 @@
+temp <- tempfile()
+download.file("https://www.bls.gov/tus/special.requests/atusact_0315.zip", temp)
+install.packages("data.table")
+library(data.table)
+timeUse <- fread(unzip(temp, files = "atusact_0315.dat"))
+rm(temp)
