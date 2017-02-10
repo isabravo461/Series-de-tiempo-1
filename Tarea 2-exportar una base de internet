@@ -4,3 +4,6 @@ install.packages("data.table")
 library(data.table)
 timeUse <- fread(unzip(temp, files = "atusact_0315.dat"))
 rm(temp)
+
+
+c<-read.csv("http://www3.inegi.org.mx/Sistemas/infoenoe/Default_CONAPO.aspx?s=est&c=27736", row.names=NULL)
