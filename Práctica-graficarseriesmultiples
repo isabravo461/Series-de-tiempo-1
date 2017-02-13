@@ -1,0 +1,67 @@
+
+desocu <- sample(3:10,120, replace=T)
+pob<- sample(92:98,120, replace=T)
+ase <- sample(45:60,120, replace=T)
+infor <-sample(23:35,120, replace=T)
+
+desocuts<-ts(desocu,frequency=12,start=2002)
+pobts<-ts(pob,frequency=12,start=2002)
+asets<-ts(ase,frequency=12,start=2002)
+inforts<-ts(infor,frequency=12,start=2002)
+
+seriemultiple<-ts.intersect(desocuts,pobts,asets,inforts)
+x11()
+plot(seriemultiple,main="Serie de tiempo múltiple", xlab="Años",ylab="Número de personas",col="purple",type="overplotted",pch=2,lty=2) #gráfica de una serie de tiempo
+
+?plot
+
+
+#cortar una serie de tiempo
+
+seriemultiple02.07<-window(seriemultiple,start=c(2002,1),end=c(2007,1))
+seriemultiple07.12<-window(seriemultiple,start=c(2007,1),end=c(2011,12))
+plot(seriemultiple02.07,main="Serie de tiempo múltiple", xlab="Años",ylab="Número de personas",col="purple",type="overplotted",pch=2,lty=2)
+plot(seriemultiple07.12,main="Serie de tiempo múltiple", xlab="Años",ylab="Número de personas",col="purple",type="overplotted",pch=2,lty=2)
+
+
+start(seriemultiple); end(seriemultiple)
+
+
+#Ejercicio
+
+#Obtener 4 series de tiempo con minimo de 30 datos
+#sujetas para compararlas
+
+#importarlas, declararlas st, graficarlas cada una con formato, dividirlas en periodos iguales
+
+#descargando datos
+install.packages("astsa")  # install it ... 
+library(astsa)             # then load it (has to be done at the start of each session)
+data()        
+jj
+serie1<-ts(jj, frequency=4, start=1960)
+length(serie1)
+#inventando otras series
+
+
+serie2<-ts(sample(20:25,84,replace=T),frequency = 4, start=1960)
+serie3<-ts(sample(2:6,84,replace=T),frequency = 4, start=1960)
+serie4<-ts(sample(37:49,84,replace=T),frequency = 4, start=1960)
+
+plot(serie1,main="Evolución de las acciones de Jhonson", xlab="Trimestre",ylab="$",col="12",pch=1,lty=3)
+plot(serie2,main="Evolución de las acciones de Standar", xlab="Trimestre",ylab="$",col="13",pch=2,lty=3)
+plot(serie3,main="Evolución de las acciones de BetterBest", xlab="Trimestre",ylab="$",col="14",pch=3,lty=3)
+plot(serie4,main="Evolución de las acciones de Whu", xlab="Trimestre",ylab="$",col="15",pch=4,lty=3)
+
+seriemultiple<-ts.intersect(serie1,serie2,serie3,serie4)
+plot(seriemultiple,main="Evolución de distintas acciones", xlab="Trimestre",ylab="$",col="20",type="overplotted",pch=2,lty=4)
+
+serie60.01<-window(seriemultiple,start=c(1960,1),end=c(1966,4))
+serie66.4<-window(seriemultiple,start=c(1966,4),end=c(1973,4))
+serie73.4<-window(seriemultiple,start=c(1973,4),end=c(1980,4))
+
+plot(serie60.01,main="Evolución de distintas acciones", xlab="Trimestre",ylab="$",col="70",type="overplotted",pch=1,lty=2) 
+plot(serie66.4,main="Evolución de distintas acciones", xlab="Trimestre",ylab="$",col="70",type="overplotted",pch=1,lty=2)
+plot(serie73.4,main="Evolución de distintas acciones", xlab="Trimestre",ylab="$",col="70",type="overplotted",pch=1,lty=2)
+
+plot(seriemultiple,main="Evolución de distintas acciones", xlab="Trimestre",ylab="$",col=c("black","purple","yellow","blue"))
