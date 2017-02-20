@@ -1,0 +1,52 @@
+desocuts<-ts(sample(3:8,44,replace = T),frequency=4,start =2000 )
+desocuts             
+plot(desocuts)
+plot(decompose(desocuts)) #Descompone una serie de tiempo para su análisis
+#por lo tanto muestra estacionalidad
+
+#Práctica 6
+tiie<-read.csv(file.choose())
+tiiets<-ts(tiie,frequency=52, start = 2005)
+tiiets
+plot(decompose(tiiets))
+?decompose(tiiets)
+
+require(xlsx)
+pib<-read.xlsx(file.choose(),sheetIndex=1)
+pib
+pibts<-ts(pib,frequency=4,start=2007)
+pibts
+plot(pibts)
+plot(decompose(pibts))
+View(pibts)
+summary(pibts)
+names(pibts$trendy)
+dpibts<-decompose(pibts)
+dpibts
+names(dpibts)
+dpibts$trend
+dpibts$seasonal
+dpibts$random
+
+#### Con la serie de tasa de desocupoacion 2005-2016, frecuencia trimestral ####
+##componer, descomponer y mandar llamar cada componente, interpretar
+
+des<-read.csv(file.choose())
+des
+dests<-ts(des,frequency=4,start=2005)
+dests
+plot(dests)
+x11()
+plot(decompose(dests))
+d<-decompose(dests)
+
+d$trend
+d$seasonal
+d$random
+
+#INTERPRETACIÓN
+#Por lo tanto la serie presenta estacionalidad y antes del 2008 la tasa de desocupación 
+#bajo considerablemente pero a partir de 2008, la serie tuvo una tendencia
+#alcista muy marcada tal vez por que la gente dcidió hacerse informal en ese periodo
+
+
