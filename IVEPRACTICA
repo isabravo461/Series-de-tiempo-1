@@ -1,20 +1,24 @@
 desocupacion<-read.csv(file.choose())
 tsd<-ts(desocupacion, frequency=4,start=2007)
 tsd
+
+
 meannc<-1:45
 for(i in 1:45) {
   meannc[i]<-(tsd[i,1]+tsd[i+1,1]+tsd[i+2,1]+tsd[i+3,1])/4
 }
 length(meannc)  
 meannc
+
 meanb<-1:44
 for(i in 1:44){
   meanb[i]<-(meannc[i]+meannc[i+1])/2
 }
 meanb
 
+YT<-1:44
 for(i in 1:44) {
-YT[i]<-tsd[i+2,1]-meanb[i]
+  YT[i]<-tsd[i+2,1]-meanb[i]
 }
 YT
 length(YT)
@@ -25,22 +29,31 @@ est
 k=1
 i=1
 for(c in 1:12)
-  {
+{
   for(f in 1:4)
+  {
+    if(k<=2|k>=47)
     {
-    if(k<=2|k>=46)
-      {
       est[f,c]=0 
-  k=k+1
     }
     
-  else {
-    
-    est[f,c]=YT[i]
-    i=i+1
-  }  
-  
-    }
+    else {
+      
+      est[f,c]=YT[i]
+      i=i+1
+    }  
+    k=k+1
   }
-
+}
 est
+
+v<-matrix(1:4,nrow=4)
+for (i in 1:4)
+{
+  v[i,1]<-mean(est[i,])
+}
+v
+
+tabla<-cbind(est,v)
+dimnames(tabla)<-list(c("Trimestre 1","Trimestre 2","Trimestre 3","Trimestre 4"),c(2007:2018,"IVE"))
+View(tabla)
