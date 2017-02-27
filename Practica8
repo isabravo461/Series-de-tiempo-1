@@ -1,0 +1,52 @@
+### otro tipo de descomposicion de la estacionalidad y tendencia es la es
+###la descomposicion por Loess
+# Descompone la serie en estacionalidad, tendencia y aleatoriadad
+###una de las vantajas es el calculo de la estacionalidad
+### es que se obtienen valores de estacionalidad no constantes 
+### en contrate con el metodo clasico de descomposición (decompose)
+
+####Descomposición CLASICA
+## Se utilizA la función descompose por ejemplo
+desocupacion <- read.csv(choose.files())
+class (desocupacion)
+des <- ts(desocupacion[1:48,1], frequency = 4, start = 2005)
+class(des)
+desco <- decompose(des)
+tend1 <- desco$trend
+x11()
+plot(tend1, col = "pink", main = "tendencia desocupación", ylab = "tasas", xlab="años")
+lines(tend2, col = "darkcyan")
+esta2 <- desco2$time.serie[,1]
+plot(esta2, col= "darkorchid")
+desco2
+tend2 <- desco2$time.series[,2]
+tend2
+### tend1 tendecia de descomposicion grafica
+####### descompocición tendencia, estacional por Loose
+### se utiliza la funcion stl()
+
+#### entonces para descomponer por Loose utilizamos
+desco2 <- stl(des, s.window= "periodic", robust = T) ####s es la tendencia 
+####robust te da una mejor serie############## nos da una matriz completa
+names(desco2)
+desco2
+desco$trend
+################################################################
+pibMx <- read.csv(choose.files())
+PMts <- ts(pibMx[,1], frequency  = 4, start = 2007)
+PMts
+
+descoPM <- stl(PMts, s.window= "periodic", robust = T) #
+decompose(PMts)
+names(descoPM)
+X11()
+plot(decompose(PMts)$trend, col = "blue", main = "PIB en México")
+lines(descoPM$time.series[,2], col= "goldenrod2")
+install.packages("fpp")
+require(fpp)
+ajust <- seasadj(descoPM)##3 Ajustamos estacionareidad
+###pronostico metodo ingenuo
+inge1 <- naive(ajust) #### nave es una funcion de pronóstico ¿Cuantos periodos quieres 
+####que te pronostique tu serie de tiempo?
+plot(inge1) ### Que bonita!!!!!!!!!!!!
+inge1
