@@ -1,0 +1,8 @@
+install.packages("astsa")
+library(astsa)
+jj
+asgts <- ts(jj, frequency = 4, start = 1960)
+asgts
+decompose(asgts)
+decompose(asgts)$trend
+plot(decompose(asgts)$trend)
